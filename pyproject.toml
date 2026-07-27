@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arfix"
+version = "1.0.0"
+description = "Fix Arabic text rendering (reshaping + BiDi) in terminals that don't support it natively (e.g. Termux)"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "arabic-reshaper",
+]
+
+[project.scripts]
+arfix = "arfix:main"
+smartcat = "arfix:run_wrapped"
+
+[tool.setuptools]
+packages = ["arfix"]

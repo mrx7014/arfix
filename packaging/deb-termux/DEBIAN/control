@@ -1,0 +1,11 @@
+Package: arfix
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: xenoZ0x <noreply@example.com>
+Description: Fix Arabic text rendering (reshaping + BiDi) in terminals - Termux build
+ Reshapes Arabic text (connects letters) and applies correct RTL
+ ordering so it displays correctly in terminals that don't support
+ Arabic shaping/BiDi natively (e.g. Termux). Provides two commands:
+ arfix (fix text directly) and smartcat (wrap any command's output).

@@ -1,0 +1,12 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
+
+for candidate in pip3 pip; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+        "$candidate" uninstall -y --break-system-packages arfix 2>/dev/null || \
+            "$candidate" uninstall -y arfix 2>/dev/null || true
+        break
+    fi
+done
+
+exit 0

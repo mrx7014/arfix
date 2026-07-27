@@ -1,0 +1,43 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
+
+SRC_DIR="/data/data/com.termux/files/usr/share/arfix-src"
+
+echo "arfix: installing Python package from $SRC_DIR ..."
+
+PIP_CMD=""
+for candidate in pip3 pip; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+        PIP_CMD="$candidate"
+        break
+    fi
+done
+
+if [ -z "$PIP_CMD" ]; then
+    echo "arfix: pip not found, attempting to install it..."
+    pkg install python -y
+    PIP_CMD="pip"
+fi
+
+"$PIP_CMD" install --break-system-packages -q "$SRC_DIR" || \
+    "$PIP_CMD" install -q "$SRC_DIR"
+
+echo "arfix: installation complete. Try: arfix \"hello مرحبا\""
+
+# Auto-enable the shell hook so cat/echo/grep/head/tail fix Arabic
+# output automatically, without needing to type arfix/smartcat.
+BASHRC="$HOME/.bashrc"
+HOOK_SRC="$SRC_DIR/arfix-shell-hook.sh"
+if [ -f "$HOOK_SRC" ]; then
+    if ! grep -q "arfix auto-wrap" "$BASHRC" 2>/dev/null; then
+        echo "" >> "$BASHRC"
+        cat "$HOOK_SRC" >> "$BASHRC"
+        echo "arfix: auto-wrap added to $BASHRC (cat/echo/grep/head/tail will auto-fix Arabic)."
+        echo "arfix: run 'source ~/.bashrc' or open a new terminal to activate it."
+    fi
+fi
+
+echo ""
+echo "Run 'arfix -h' for full usage details."
+
+exit 0

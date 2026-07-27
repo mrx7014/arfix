@@ -1,0 +1,16 @@
+# Build artifacts
+*.deb
+*.tar.gz
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Python
+.venv/
+venv/
+*.egg
+
+# OS
+.DS_Store
