@@ -71,6 +71,8 @@ dpkg -i arfix-debian.deb    # Debian، Ubuntu، Mint، Kali، Pop!_OS، Raspberr
 
 كل حزمة بتركب حزمة البايثون، وتظبط أوامر `arfix` و`smartcat`، وتفعّل الـ shell auto-wrap hook — من غير أي أسئلة، من غير أي خطوات إضافية.
 
+او قم بتحميل حزم `.deb` من releases و ثبتها مباشرة
+
 ### الطريقة 2 — سكربت تركيب بأمر واحد
 
 بيشتغل بنفس الطريقة على Termux أو أي توزيعة مبنية على Debian، من غير ما تحتاج `dpkg`:

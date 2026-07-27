@@ -73,6 +73,8 @@ dpkg -i arfix-debian.deb    # Debian, Ubuntu, Mint, Kali, Pop!_OS, Raspberry Pi 
 
 Each package installs the Python package, sets up the `arfix` and `smartcat` commands, and enables the shell auto-wrap hook — no prompts, no follow-up steps.
 
+Or download `.deb` packages from releases and install in
+
 ### Option 2 — One-command install script
 
 Works the same way on Termux or any Debian-based distribution, without needing `dpkg`:
