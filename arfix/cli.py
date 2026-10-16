@@ -59,7 +59,9 @@ UNINSTALLING:
     No further action is needed from you.
 """
 
-USAGE_LINE = "usage: arfix <text>  |  echo text | arfix  |  arfix -f <file>  |  arfix -h"
+USAGE_LINE = (
+    "usage: arfix <text>  |  echo text | arfix  |  arfix -f <file>  |  arfix -h"
+)
 
 
 def _fix_file(path: str):
@@ -131,8 +133,9 @@ def run_wrapped():
         text=True,
         bufsize=1,
     )
+    assert proc.stdout is not None
     for line in proc.stdout:
-        sys.stdout.write(fix_line(line.rstrip("\n")) + "\n")
+        sys.stdout.write(fix_line(line.rstrip("\r\n")) + "\n")
         sys.stdout.flush()
     proc.wait()
     sys.exit(proc.returncode)

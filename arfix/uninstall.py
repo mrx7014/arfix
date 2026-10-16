@@ -8,6 +8,7 @@ or reused independently of argument parsing.
 import os
 import shutil
 import subprocess
+from typing import Optional
 
 
 def _remove_hook_from_bashrc() -> bool:
@@ -32,7 +33,11 @@ def _remove_hook_from_bashrc() -> bool:
 
     # Also eat a single leading blank line we added before the block
     new_start = start
-    if new_start > 1 and content[new_start - 1] == "\n" and content[new_start - 2] == "\n":
+    if (
+        new_start > 1
+        and content[new_start - 1] == "\n"
+        and content[new_start - 2] == "\n"
+    ):
         new_start -= 1
 
     new_content = content[:new_start] + content[end:]
@@ -41,7 +46,7 @@ def _remove_hook_from_bashrc() -> bool:
     return True
 
 
-def _find_pip() -> str:
+def _find_pip() -> Optional[str]:
     for candidate in ("pip3", "pip"):
         if shutil.which(candidate):
             return candidate
@@ -57,13 +62,15 @@ def _uninstall_pip_package() -> bool:
 
     result = subprocess.run(
         [pip_cmd, "uninstall", "-y", "--break-system-packages", "arfix"],
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
     if result.returncode != 0:
         # retry without --break-system-packages for pip versions that reject it
         result = subprocess.run(
             [pip_cmd, "uninstall", "-y", "arfix"],
-            capture_output=True, text=True,
+            capture_output=True,
+            text=True,
         )
 
     if result.returncode == 0:
@@ -126,5 +133,7 @@ def uninstall_self():
         _schedule_deb_removal()
 
     print("")
-    print("arfix: uninstall complete. Restart your terminal (or run 'source ~/.bashrc')")
+    print(
+        "arfix: uninstall complete. Restart your terminal (or run 'source ~/.bashrc')"
+    )
     print("       to make sure cat/echo/grep/head/tail are back to normal.")

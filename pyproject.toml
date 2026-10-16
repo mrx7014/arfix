@@ -12,6 +12,12 @@ dependencies = [
     "arabic-reshaper",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 [project.scripts]
 arfix = "arfix:main"
 smartcat = "arfix:run_wrapped"

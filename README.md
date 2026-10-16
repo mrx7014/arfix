@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/)
 [![Platform](https://img.shields.io/badge/platform-Termux%20%7C%20Debian--based%20Linux-lightgrey.svg)](#supported-platforms)
-**Languages:** [العربية](README.ar.md)
+**Languages:** [العربية](README-AR.md)
 
 ---
 
@@ -172,7 +172,8 @@ arfix/
 │   └── deb-debian/DEBIAN/       # control / postinst / prerm for the Debian-based build
 ├── pyproject.toml               # Package metadata and entry points
 ├── LICENSE
-└── README.md
+├── README.md
+└── README-AR.md                 # Arabic translation of this README
 ```
 
 ### Code organization
